@@ -5,8 +5,9 @@ const { createTODO } = require('./types');
 const { updateTODO } = require('./types');
 const mongoose = require('mongoose');
 const PORT = 3001;
+const { mdbURL } = require('./pass');
 
-mongoose.connect('mongodb+srv://athulkesav2004:DumbAss280804@cluster0.ocneflj.mongodb.net/todos');
+mongoose.connect(mdbURL);
 
 
 const todoSchema = new mongoose.Schema({
