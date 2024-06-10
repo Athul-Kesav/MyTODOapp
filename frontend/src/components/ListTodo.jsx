@@ -13,7 +13,6 @@ const ListTodo = ({ todos }) => {
         status: true
       })
     })
-    
   }
   return (
     <div>
