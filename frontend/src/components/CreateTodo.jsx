@@ -12,8 +12,8 @@ const CreateTodo = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        title: document.getElementById('title').value,
-        description: document.getElementById('description').value,
+        title: title,
+        description: description,
         status: false
       })
     })
