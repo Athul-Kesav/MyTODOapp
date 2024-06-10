@@ -3,7 +3,7 @@ const zod = require('zod');
 
 const updateTODO = zod.object({
     id: zod.string(),
-    status: zod.string(),
+    status: zod.boolean(),
 });
 
 const createTODO = zod.object({
