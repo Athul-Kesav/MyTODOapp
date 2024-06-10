@@ -6,19 +6,12 @@ const { updateTODO } = require('./types');
 const mongoose = require('mongoose');
 const PORT = 3001;
 const { mdbURL } = require('./pass');
+const { TODO } = require('./db');
 
 mongoose.connect(mdbURL);
 
 
-const todoSchema = new mongoose.Schema({
-    username: String,
-    id: String,
-    title: String,
-    description: String,
-    status: String,
-});
 
-const TODO = mongoose.model('TODO', todoSchema);
 
 
 app.use(express.json());
