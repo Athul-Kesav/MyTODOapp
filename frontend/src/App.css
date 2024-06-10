@@ -1,0 +1,4 @@
+CreateTodo {
+    display: flex;
+    flex-direction: column;
+}

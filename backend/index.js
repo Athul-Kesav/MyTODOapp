@@ -7,16 +7,17 @@ const mongoose = require('mongoose');
 const PORT = 3001;
 const { mdbURL } = require('./pass');
 const { TODO } = require('./db');
+const cors = require('cors')
 
 mongoose.connect(mdbURL);
 
 
 
 
-
+app.use(cors())
 app.use(express.json());
 
-app.post('/todo', async function (req, res){
+app.post('/createTodo', async function (req, res){
     const payLoad = req.body;
     const parsedPayload = createTODO.safeParse(payLoad);
 
@@ -24,11 +25,9 @@ app.post('/todo', async function (req, res){
         return res.status(400).json(parsedPayload.error);
     } else {
         const todo = new TODO({
-            username: parsedPayload.data.username,
-            id: parsedPayload.data.id,
-            title: parsedPayload.data.title,
-            description: parsedPayload.data.description,
-            status: parsedPayload.data.status,
+            title: payLoad.title,
+            description: payLoad.description,
+            status: payLoad.status,
         });
 
         await todo.save();
@@ -41,14 +40,14 @@ app.get('/todos', async (req, res) => {
     if(!todos){
         return res.status(500).json({message: 'Internal server error'});
     } else {
-        return res.status(200).json(todos);
+        return res.status(200).json({todos});
     }
 })
 
 app.put('/completed', async function (req, res){
     const payLoad = req.body;
     const parsedPayload = updateTODO.safeParse(payLoad);
-    const todo = await TODO.findOne({id: parsedPayload.data.id});
+    const todo = await TODO.findOne({_id: parsedPayload.data._id});
     todo.status = parsedPayload.data.status;
     await todo.save();
     return res.status(200).json({message: 'TODO updated successfully'});
