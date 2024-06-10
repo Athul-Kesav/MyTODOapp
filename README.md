@@ -1,4 +1,4 @@
-## My TO-DO App
+# My TO-DO App
 - The user can signup/login
 - They can Create, Read, Update and Delete a To-Do element
 - A To-Do can be marked as Done
@@ -6,7 +6,7 @@
 - The design of the webapp has been given in the .excalidraw file
   (This design will be for the main app, here only a basic design will be made)
 
-# Currently, the following features are done
+## Currently, the following features are done
 - Create
 - Read
 - Update (only partially, can set done/not done)
