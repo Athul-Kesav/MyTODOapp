@@ -1,0 +1,19 @@
+@import url(https://db.onlinewebfonts.com/c/17e068270b70e7f69ae239a5e22f1715?family=Lazenby+Computer+Smooth);
+
+h2 {
+    font-family: "Lazenby Computer Smooth",sans-serif;
+    font-size: 42px;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #C7D6D5;
+    padding:15px 7%;
+}
+
+.searchBar {
+    text-decoration: none;
+}
