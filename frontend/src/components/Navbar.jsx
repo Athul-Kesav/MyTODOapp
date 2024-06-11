@@ -14,13 +14,17 @@ const Navbar = () => {
             <div>
                 <ul>
                     <li>
-                        <div>
+                        <div id='login'>
+                        <a href='/login.html'>
                             login
+                        </a>
                         </div>
                     </li>
                     <li>
                         <div>
+                        <a id='signup' href='/signup.html'>
                             signup
+                        </a>
                         </div>
                     </li>
                 </ul>

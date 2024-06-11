@@ -1,6 +1,16 @@
 @import url(https://db.onlinewebfonts.com/c/17e068270b70e7f69ae239a5e22f1715?family=Lazenby+Computer+Smooth);
 @import url(https://db.onlinewebfonts.com/c/7e5d530a16f35810413e74aa1d920ae9?family=Marsei+Medium);
 
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #C7D6D5;
+    padding:15px 7%;
+    height: 10vh;
+}
+
 .navbar h2 {
     font-family: "Lazenby Computer Smooth",sans-serif;
     font-size: 42px;
@@ -12,15 +22,6 @@
     text-align: center;
 }
 
-.navbar {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #C7D6D5;
-    padding:15px 7%;
-    height: 10vh;
-}
 
 .navbar div {
     display: flex;
@@ -75,4 +76,10 @@ ul li div {
     border: 2px;
     border-radius: 25px;
     padding:8px 20px;
+    
+}
+
+a {
+    text-decoration: none;
+    color: #C20114;
 }
