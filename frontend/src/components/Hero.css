@@ -1,0 +1,42 @@
+@import url(https://db.onlinewebfonts.com/c/17e068270b70e7f69ae239a5e22f1715?family=Lazenby+Computer+Smooth);
+@import url(https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap);
+@import url(https://fonts.cdnfonts.com/css/jupiteroid);
+.container {
+    background-color: #0C0F12;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+.leftContainer {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+}
+.leftContainer p {
+    font-family: "Lazenby Computer Smooth",sans-serif;
+    font-size: 75px;
+    color: #C7D6D5;
+    padding-bottom: 53px;
+}
+
+.leftContainer h3 {
+    font-family: 'Jupiteroid', sans-serif;
+    font-weight:lighter;
+    color: #C7D6D5;
+    font-size: 36px;
+}
+
+.rightContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.rightContainer #imgH {
+    height: 27vh;
+}
+
+.rightContainer #imgSH {
+    height: 40vh;
+}
