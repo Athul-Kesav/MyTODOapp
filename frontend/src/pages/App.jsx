@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import './Home.css';
-import CreateTodo from './components/CreateTodo.jsx';
-import ListTodo from './components/ListTodo.jsx';
-import NavBar from './components/Navbar.jsx'
+import CreateTodo from '../components/CreateTodo.jsx';
+import ListTodo from '../components/ListTodo.jsx';
+import NavBar from '../components/Navbar.jsx'
 
 function App() {
   const [todos, setTodos] = useState([]);

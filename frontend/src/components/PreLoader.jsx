@@ -4,8 +4,8 @@ import './PreLoader.css'
 function PreLoader() {
   return (
     <>
-      <div class="loader">
-        <div class="loadingspinner">
+      <div className="loader">
+        <div className="loadingspinner">
           <div id="square1"></div>
           <div id="square2"></div>
           <div id="square3"></div>

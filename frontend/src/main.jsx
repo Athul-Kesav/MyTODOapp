@@ -1,17 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Home from './Home.jsx'
+import Home from './pages/Home.jsx'
+import Signup from './pages/Signup.jsx' 
 import './index.css'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Home />
-  </React.StrictMode>,
-)
-
-ReactDOM.createRoot(document.getElementById('user-root')).render(
-  <React.StrictMode>
-    <App />
   </React.StrictMode>,
 )
