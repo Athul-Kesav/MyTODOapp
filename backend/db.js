@@ -1,11 +1,18 @@
 const mongoose = require('mongoose');
 
+const todoSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    deadline: { type: Date, required: true },
+    status: { type: Boolean, required: true }
+})
+
 const userSchema = new mongoose.Schema({
-    username: {
+    email: {
         type: String,
         required: true,
     },
-    hashPass: {
+    password: {
         type: String,
         required: true,
     },
@@ -14,14 +21,7 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     todos: {
-        type: [
-            {
-                title: String,
-                description: String,
-                deadline: Date,
-                status: Boolean,
-            },
-        ],
+        type: [todoSchema],
         required: false,
     },
 });

@@ -1,14 +1,9 @@
-const { sign } = require('jsonwebtoken');
 const zod = require('zod');
 
-const signup = zod.object({
-    username: zod.string(),
+const signupLogin = zod.object({
+    email: zod.string().email(),
     password: zod.string().min(8),
     fullname: zod.string(),
-});
-
-const login = zod.object({
-    token: zod.string(),
 });
 
 const updateTODO = zod.object({
@@ -19,14 +14,14 @@ const updateTODO = zod.object({
 const createTODO = zod.object({
     title: zod.string(),
     description: zod.string(),
+    deadline:zod.string(),
     status: zod.boolean(),
 });
 
 module.exports = {
+    signupLogin,
     updateTODO,
     createTODO,
-    signup,
-    login,
 };
 
 // Path: backend/index.js
