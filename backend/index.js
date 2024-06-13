@@ -20,8 +20,6 @@ app.use(express.json());
 //Functions
 const hasher = (pass) => {
     const hash = crypto.createHash('sha256');
-
-    // Update the hash object with the string
     hash.update(pass);
     return hash.digest('hex');
 
@@ -39,6 +37,7 @@ const zodVerifier = (schema) => (req, res, next) => {
         next();
     }
 }
+
 const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
@@ -60,6 +59,9 @@ const authenticateJWT = (req, res, next) => {
     }
 };
 
+//Routes
+
+//SIGNUP ROUTE
 app.post('/signup',zodVerifier(signupLogin), async function (req, res) {
     try {
         const existingUser = await USER.findOne({ email: req.body.email });
@@ -95,6 +97,8 @@ app.post('/signup',zodVerifier(signupLogin), async function (req, res) {
     }
 })
 
+
+//LOGIN ROUTE
 app.post('/login',zodVerifier(signupLogin), async (req, res) => {
     const existingUser = await USER.findOne({ email: req.body.email });
     if (!existingUser) {
@@ -120,6 +124,8 @@ app.post('/login',zodVerifier(signupLogin), async (req, res) => {
     }
 })
 
+
+//TODO CREATION ROUTE
 app.post('/user/create-todo', zodVerifier(createTODO), authenticateJWT, async function (req, res) {
     const payLoad = req.body;
     const parsedPayload = createTODO.safeParse(payLoad);
@@ -154,6 +160,8 @@ app.post('/user/create-todo', zodVerifier(createTODO), authenticateJWT, async fu
     }
 })
 
+
+//GET TODOS ROUTE
 app.get('/user/todos',authenticateJWT, async (req, res) => {
         try {
             const email = req.user.email;
@@ -174,6 +182,8 @@ app.get('/user/todos',authenticateJWT, async (req, res) => {
         }
 })
 
+
+//SET TODOS ROUTE
 app.put('/user/completed',authenticateJWT, async function (req, res) {
     
     try {
@@ -192,7 +202,7 @@ app.put('/user/completed',authenticateJWT, async function (req, res) {
         await user.save()
 
         res.status(200).send({
-            msg:"To-Do item updated"
+            msg:"To-Do item updated successfully"
         })
 
     } catch (error) {
@@ -201,6 +211,8 @@ app.put('/user/completed',authenticateJWT, async function (req, res) {
     }
 })
 
+
+//LISTEN FOR REQUESTS
 app.listen(PORT, function () {
     console.log(`Server started on port ${PORT}`);
 })
