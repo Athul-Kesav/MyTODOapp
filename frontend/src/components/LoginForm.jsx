@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from "react-router-dom";
-import './SignupForm.css'
+import './LoginForm.css'
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
@@ -24,13 +24,13 @@ const SignupForm = () => {
       };
 
 
-      const response = await axios.post('http://localhost:3001/signup', {
+      const response = await axios.post('http://localhost:3001/login', {
         email: email,
         password: password,
         fullname: fullname,
       }, { headers });
       console.log('Response: ', response.data);
-      alert("Signed up successfully")
+      alert("Logged in Successfully")
       navigate('/user')
     } catch (error) {
       console.error('Axios Error submitting form:', error);
@@ -38,11 +38,11 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="signup-form">
+    <div className="login-form">
       <h2>
         LET'S <br />
         GET YOU<br />
-        STARTED
+        BACK ON
       </h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
@@ -55,12 +55,12 @@ const SignupForm = () => {
           <input type="text" placeholder="FULL NAME" value={fullname} onChange={(e) => setFullName(e.target.value)} required />
         </div>
         <div className="member-link">
-          Already a Member?
-            <Link to='/Login' className='login-btn'>
-              LOGIN
+          New Here?
+            <Link to='/Signup' className='signup-btn'>
+              SIGNUP
             </Link>
         </div>
-        <button type="submit" className="submit-btn">LET'S GO</button>
+        <button type="submit" className="submit-btn">LOGIN</button>
       </form>
     </div>
   )

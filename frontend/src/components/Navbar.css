@@ -48,28 +48,14 @@ a {
 ul {
     display: flex;
     list-style: none;
-    text-align: center;
+    
 }
 
 ul li {
     display: inline-block;
-    margin: 10px 20px;
-    font-size: 18px;
-    background-color: #0c0f12;
-    border-radius: 5px;
-    padding: 8px 20px;
-    width: auto;
-    align-items: center;
+    margin: auto 20px;
     justify-content: center;
-    box-shadow: 2px 2px 10px 1px gray;
-}
-
-.navButton {
-    font-size: 12px;
-    font-family: "MARS", sans-serif;
-    color: #C7D6D5;
-    text-decoration: none;
-
+    align-items: center;
 }
 
 .logo {
@@ -84,3 +70,19 @@ ul li {
     text-align: center;
     color: #0c0f12;
 }
+
+.navButton {
+    font-size: 13px;
+    font-family: "MARS", sans-serif;
+    color: #C7D6D5;
+    text-decoration: none;
+    background-color: #0c0f12;
+    padding: 12px 20px;
+    width: 120px;
+    align-items: center;
+    justify-content: baseline;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px 1px gray;
+    text-align: center;
+}
+

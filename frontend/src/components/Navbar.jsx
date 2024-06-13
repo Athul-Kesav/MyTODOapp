@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import './Navbar.css'
 import searchIcon from '../assets/search-solid.svg'
 import menu from '../assets/barcode-solid.svg'
-const Navbar = () => {
 
+const Navbar = () => {
 
     return (
         <div className='navbar'>
+
             <img id='menu' src={menu} alt='menuHam' />
             <h2>
                 <center>
@@ -19,16 +20,10 @@ const Navbar = () => {
             <div>
                 <ul>
                     <li>
-                        <div onClick={() => {
-                            window.location.href('../pages/Login.jsx')
-                        }}>
-                            <Link to='/Login' className='navButton'>login</Link>   
-                        </div>
+                        <Link to='/Login' className='navButton'>login</Link>   
                     </li>
                     <li>
-                        <div>
-                            <Link to='/Signup' className='navButton'>signup</Link>
-                        </div>
+                        <Link to='/Signup' className='navButton'>signup</Link>
                     </li>
                 </ul>
                 <div className='searchBar'>

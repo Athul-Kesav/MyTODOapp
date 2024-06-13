@@ -9,7 +9,8 @@ import {
   Route,
 } from "react-router-dom";
 import Signup from './Signup.jsx';
-import Login from './Login.jsx'
+import Login from './Login.jsx';
+import User from './User.jsx';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Route exact path="/" element={<Hero />} />
             <Route path="/Signup" element={<Signup />} />
             <Route path="/Login" element={<Login />} />
+            <Route path='/User' element={<User />} />
           </Routes>
         </>
       )}

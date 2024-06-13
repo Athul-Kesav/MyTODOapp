@@ -1,7 +1,7 @@
 @import url(https://fonts.cdnfonts.com/css/jupiteroid);
 @import url(https://fonts.cdnfonts.com/css/mars-2);
 
-.signup-form {
+.login-form {
     background-color: #dcdcdc;
     padding: 20px;
     border-radius: 10px;
@@ -13,7 +13,7 @@
     border: 0;
 }
 
-.signup-form h2 {
+.login-form h2 {
     font-family: 'Jupiteroid','Courier New', Courier, monospace;
     color: #C20114;
     margin-bottom: 20px;
@@ -51,7 +51,7 @@
     margin: 10px;
 }
 
-.login-btn,
+.signup-btn,
 .submit-btn {
     border-radius: 20px;
     color: #C20114;

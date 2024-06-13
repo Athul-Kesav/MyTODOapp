@@ -1,7 +1,6 @@
 import React from 'react'
 import sgPic1 from '../assets/SignupPic1.svg'
 import sgPic2 from '../assets/SignupPic2.svg'
-import sgPic3 from '../assets/SignupPic3.svg'
 import SignupForm from '../components/SignupForm'
 import './Signup.css'
 
