@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 import './LoginForm.css'
 
 const SignupForm = () => {
@@ -29,7 +30,8 @@ const SignupForm = () => {
         password: password,
         fullname: fullname,
       }, { headers });
-      console.log('Response: ', response.data);
+
+      Cookies.set('token', response.data.token);
       alert("Logged in Successfully")
       navigate('/user')
     } catch (error) {

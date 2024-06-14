@@ -119,7 +119,7 @@ app.post('/login',zodVerifier(signupLogin), async (req, res) => {
     if (existingUser.password === hashPass) {
         res.status(200).send({
             msg: "Logged in Successfully",
-            token: "Bearer " + jwt.sign(details, jwtSecret)
+            token: `Bearer ${jwt.sign(details, jwtSecret)}`
         })
     }
 })
