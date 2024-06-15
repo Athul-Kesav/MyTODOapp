@@ -1,6 +1,6 @@
 @import url(https://db.onlinewebfonts.com/c/17e068270b70e7f69ae239a5e22f1715?family=Lazenby+Computer+Smooth);
 @import url(https://fonts.cdnfonts.com/css/jupiteroid);
-.container {
+.heroContainer {
     background-color: #0C0F12;
     height: 90vh;
     display: flex;

@@ -13,10 +13,6 @@ const SignupForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Full Name:', fullname);
-
     try {
 
       const headers = {

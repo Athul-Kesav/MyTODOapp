@@ -62,13 +62,13 @@ const authenticateJWT = (req, res, next) => {
 //Routes
 
 //SIGNUP ROUTE
-app.post('/signup',zodVerifier(signupLogin), async function (req, res) {
+app.post('/signup', zodVerifier(signupLogin), async function (req, res) {
     try {
         const existingUser = await USER.findOne({ email: req.body.email });
         if (existingUser) {
             res.status(409).send({
-                msg:"User Already Exists"
-        });
+                msg: "User Already Exists"
+            });
             return;
         }
 
@@ -93,27 +93,27 @@ app.post('/signup',zodVerifier(signupLogin), async function (req, res) {
         console.error('Error during sign-up:', error);
         res.status(500).send({
             msg: 'Internal Server Error'
-    });
+        });
     }
 })
 
 
 //LOGIN ROUTE
-app.post('/login',zodVerifier(signupLogin), async (req, res) => {
+app.post('/login', zodVerifier(signupLogin), async (req, res) => {
     const existingUser = await USER.findOne({ email: req.body.email });
     if (!existingUser) {
         res.status(404).send({
             msg: "User Not Found"
         })
-        return;
+        return
     }
 
     const hashPass = hasher(req.body.password)
 
     const details = {
-        email:req.body.email,
+        email: req.body.email,
         password: hashPass,
-        fullname:existingUser.fullname,
+        fullname: existingUser.fullname,
     }
 
     if (existingUser.password === hashPass) {
@@ -136,7 +136,7 @@ app.post('/user/create-todo', zodVerifier(createTODO), authenticateJWT, async fu
         const todo = {
             title: payLoad.title,
             description: payLoad.description,
-            deadline:payLoad.deadline,
+            deadline: payLoad.deadline,
             status: payLoad.status,
         };
 
@@ -160,32 +160,65 @@ app.post('/user/create-todo', zodVerifier(createTODO), authenticateJWT, async fu
     }
 })
 
+//SET TODOS ROUTE
+app.put('/user/update-todo', authenticateJWT, async function (req, res) {
 
-//GET TODOS ROUTE
-app.get('/user/todos',authenticateJWT, async (req, res) => {
-        try {
-            const email = req.user.email;
-            const user = await USER.findOne({ email: email });
+    try {
+        const email = req.user.email;
+        const user = await USER.findOne({ email: email });
 
-            if (!user) {
-                return res.status(404).send({ error: 'User not found' });
-            }
+        const index = user.todos.findIndex(todo => todo._id.equals(req.body.id));
 
-            const todos = user.todos
-
-            res.status(200).send({
-                todos:todos
-            })
-        } catch (error) {
-            console.error('Error creating TODO:', error);
-            return res.status(500).send({ error: 'Internal server error' });
+        if (index !== -1) {
+            // Perform the update on todos[index]
+            user.todos[index].status = true
+            // Update other properties as needed
+        } else {
+            console.log(`Todo with id ${id} not found`);
         }
+
+
+        await user.save()
+
+        res.status(200).send({
+            msg: "To-Do item updated successfully"
+        })
+
+    } catch (error) {
+        console.error('Error creating TODO:', error);
+        return res.status(500).send({ error: 'Internal server error' });
+    }
+})
+
+//REMOVE DONE TO-DOs ROUTE
+app.post('/user/update-todo', authenticateJWT, async function (req, res) {
+    const email = req.user.email;
+
+    try {
+        const user = await USER.findOne({ email: email });
+
+        const index = user.todos.findIndex(todo => todo._id.equals(req.body.id));
+
+        if (index !== -1) {
+            // Perform the update on todos[index]
+            user.todos.splice(index, 1);
+            // Update other properties as needed
+        } else {
+            console.log(`Todo with id ${id} not found`);
+        }
+
+        await user.save();
+
+        return res.status(200).send({ message: 'TODO removed successfully' });
+    } catch (error) {
+        console.error('Error creating TODO:', error);
+        return res.status(500).send({ error: 'Internal server error' });
+    }
 })
 
 
-//SET TODOS ROUTE
-app.put('/user/completed',authenticateJWT, async function (req, res) {
-    
+//GET TODOS ROUTE
+app.get('/user/todos', authenticateJWT, async (req, res) => {
     try {
         const email = req.user.email;
         const user = await USER.findOne({ email: email });
@@ -194,22 +227,18 @@ app.put('/user/completed',authenticateJWT, async function (req, res) {
             return res.status(404).send({ error: 'User not found' });
         }
 
-        
-        const todoID = req.body.id
-
-        user.todos[todoID].status = req.body.status;
-
-        await user.save()
+        const todos = user.todos
 
         res.status(200).send({
-            msg:"To-Do item updated successfully"
+            todos: todos
         })
-
     } catch (error) {
         console.error('Error creating TODO:', error);
         return res.status(500).send({ error: 'Internal server error' });
     }
 })
+
+
 
 
 //LISTEN FOR REQUESTS

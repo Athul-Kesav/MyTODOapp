@@ -7,14 +7,14 @@ import './Login.css'
 const Login = () => {
   return (
     <>
-      <div className='container'>
-        <div className='subCont1'>
+      <div className='loginContainer'>
+        <div className='lsubCont1'>
           <img src={lgPic1} alt='form-filling' />
         </div>
-        <div className='subCont2'>
+        <div className='lsubCont2'>
           <LoginForm />
         </div>
-        <div className='subCont3'>
+        <div className='lsubCont3'>
           <img src={lgPic2} alt='painting' />
         </div>
       </div>

@@ -22,8 +22,8 @@ function User() {
       }
     }
 
-    const intervalId = setInterval(fetchTodo, 6000);
-
+    const intervalId = setInterval(fetchTodo, 5000);
+    
     // Fetch todos immediately on mount
     fetchTodo();
 
@@ -34,6 +34,7 @@ function User() {
   return (
     <>
       <ListTodo todos={todos} />
+      <CreateTodo />
     </>
   );
 }

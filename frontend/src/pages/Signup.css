@@ -1,4 +1,4 @@
-.container {
+.signupContainer {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -6,7 +6,7 @@
 
 }
 
-.subCont2 {
+.signSubCont2 {
     display: flex;
     flex-direction: column;
     justify-content:flex-start;
@@ -14,16 +14,16 @@
     padding:70px;
 }
 
-.subCont2 img {
+.signSubCont2 img {
     width: 200px;
     position: absolute;
 }
 
-.subCont1 img {
+.signSubCont1 img {
     width: 350px;
 }
 
-.subCont3 img {
+.signSubCont3 img {
     width: 350px;
     margin-left: auto;
     margin-right: auto;

@@ -1,3 +1,6 @@
+@import url(https://fonts.cdnfonts.com/css/jupiteroid);
+
+
 input {
     padding:10px;
     margin:10px;
@@ -6,4 +9,5 @@ input {
 button {
     padding:10px;
     margin:10px;
+    cursor: pointer;
 }

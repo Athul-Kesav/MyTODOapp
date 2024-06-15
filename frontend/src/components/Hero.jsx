@@ -6,7 +6,7 @@ import SubHeroImg from '../assets/SubHeroImg.svg'
 
 const Hero = () => {
   return (
-    <div className='container'>
+    <div className='heroContainer'>
         <div className='leftContainer'>
             <p>
                 Let's Do<br/>

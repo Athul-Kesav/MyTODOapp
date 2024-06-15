@@ -13,10 +13,6 @@ const SignupForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Full Name:', fullname);
-
     try {
 
       const headers = {
@@ -47,13 +43,13 @@ const SignupForm = () => {
         STARTED
       </h2>
       <form onSubmit={handleSubmit}>
-        <div className="input-group">
+        <div className="input-group-signup">
           <input type="email" placeholder="EMAIL" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
-        <div className="input-group">
+        <div className="input-group-signup">
           <input type="password" placeholder="PASS" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
-        <div className="input-group">
+        <div className="input-group-signup">
           <input type="text" placeholder="FULL NAME" value={fullname} onChange={(e) => setFullName(e.target.value)} required />
         </div>
         <div className="member-link">

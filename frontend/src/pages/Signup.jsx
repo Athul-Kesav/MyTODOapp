@@ -7,14 +7,14 @@ import './Signup.css'
 const Signup = () => {
   return (
     <>
-      <div className='container'>
-        <div className='subCont1'>
+      <div className='signupContainer'>
+        <div className='signSubCont1'>
           <img src={sgPic1} alt='form-filling' />
         </div>
-        <div className='subCont2'>
+        <div className='signSubCont2'>
           <SignupForm />
         </div>
-        <div className='subCont3'>
+        <div className='signSubCont3'>
           <img src={sgPic2} alt='painting' />
         </div>
       </div>

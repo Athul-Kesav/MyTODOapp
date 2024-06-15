@@ -7,8 +7,8 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 550px;
-    height: 580px;
+    width: 35vw;
+    height: 70vh;
     padding:25px;
     border: 0;
 }
@@ -20,13 +20,13 @@
     font-size: 30px;
 }
 
-.input-group {
+.input-group-signup {
     margin-bottom: 15px;
     border: none;
     outline: none;
 }
 
-.input-group input {
+.input-group-signup input {
     width: calc(100% - 20px);
     padding: 20px;
     border: none;
