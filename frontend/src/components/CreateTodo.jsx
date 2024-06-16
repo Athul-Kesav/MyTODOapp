@@ -31,7 +31,7 @@ const CreateTodo = () => {
     await axios.post('http://localhost:3001/user/create-todo', {
       title: title,
       description: description,
-      deadline: deadline.toString(),
+      deadline: ` ${deadline}`,
       status: false
     }, { headers: headers })
   }
