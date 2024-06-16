@@ -24,7 +24,7 @@ const ListTodo = ({ todos }) => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
       }
-      await axios[method]('http://localhost:3001/user/update-todo', {
+      await axios[method]('https://https://done-it-six.vercel.app/update-todo', {
         id: todo._id
       }, { headers: header });
     } catch (error) {
