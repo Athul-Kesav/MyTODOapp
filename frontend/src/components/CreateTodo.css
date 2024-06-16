@@ -8,9 +8,9 @@
     align-items: center;
     flex-direction: column;
     margin: 20px;
-    margin-top: 100px;
+    margin-top: 80px;
     padding: 20px;
-    padding-top:2px;
+    padding-top:26px;
     width: auto;
     background-color: #C7D6D5;
     border-radius: 20px;
@@ -36,7 +36,8 @@
     font-size: 25px;
     color: #0C0F12;
     box-shadow: 5px 5px #0C0F1250;
-    transition: box-shadow 2 ease;
+    transition: box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .newTodoContainer input:focus {
@@ -51,6 +52,7 @@
 
 .newTodoContainer input:hover {
     box-shadow: 10px 10px #0C0F1250;
+    transform: translateX(-2px) translateY(-2px);
 }
 
 .newTodoContainer button {
@@ -63,12 +65,12 @@
     font-size:25px;
     color: #0C0F12;
     box-shadow: 5px 5px #0C0F1250;
-    transition: transform 0.8s ease;
+    transition: transform 0.6s ease;
 }
 
 .newTodoContainer button:hover {
     background-color: #0C0F1280;
-    color:#C7D6D5;
+    color:#ECEBF3;
     transform: scale(1.03);
     box-shadow: 10px 10px #0C0F1250;
 }

@@ -3,7 +3,7 @@
 @import url(https://db.onlinewebfonts.com/c/17e068270b70e7f69ae239a5e22f1715?family=Lazenby+Computer+Smooth);
 
 
-.notDone h2, .done h2 {
+.notDone h2, .done h2, .noTodos h2 {
   font-family: 'Jupiteroid', sans-serif;
   color: #C7D6D5;
   padding:20px;
