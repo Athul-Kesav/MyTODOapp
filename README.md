@@ -1,11 +1,11 @@
-# My TO-DO App
+# My TO-DO App 🗃️
 - The user can signup/login
 - They can Create, Read, Update and Delete a To-Do element
 - A To-Do can be marked as Done
 - The app is connected to a backend, where all the details are stored [MongoDB](https://www.mongodb.com)
 - The design of the webapp has been given in the .excalidraw file (updated)
 
-## Currently, the following features are done
+## Currently, the following features are done ☑️
 - BACKEND
   - Create
   - Read
@@ -17,3 +17,7 @@
   - Signup Page ( returns the jwt token )
   - User Page ( Add new Task, Set a Task as Done, Delete A Task from the done section )
 
+### ISSUES 🤞
+- Not Completely responsive yet
+- To-Do creations and updations are not instant ( maybe have to set up a virtual memory before updating the database )
+- The page transitions are not smooth.
