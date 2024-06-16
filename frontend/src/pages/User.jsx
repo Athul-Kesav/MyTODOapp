@@ -22,7 +22,7 @@ function User() {
       }
     }
 
-    const intervalId = setInterval(fetchTodo, 5000);
+    const intervalId = setInterval(fetchTodo, 2000);
     
     // Fetch todos immediately on mount
     fetchTodo();

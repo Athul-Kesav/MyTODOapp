@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import './Navbar.css'
+import './AuthNavbar.css'
 import searchIcon from '../assets/search-solid.svg'
 import menu from '../assets/barcode-solid.svg'
 
-const Navbar = () => {
-
+const UnAuthNavbar = () => {
     return (
         <div className='navbar'>
 
@@ -35,4 +34,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default UnAuthNavbar

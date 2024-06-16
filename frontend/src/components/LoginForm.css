@@ -4,11 +4,13 @@
 .login-form {
     background-color: #dcdcdc;
     padding: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
     width: 35vw;
-    height: 70vh;
+    height: 60vh;
     padding:25px;
     border: 0;
 }
@@ -18,6 +20,7 @@
     color: #C20114;
     margin-bottom: 20px;
     font-size: 30px;
+    font-weight: 700;
 }
 
 .input-group {

@@ -3,17 +3,34 @@
 @import url(https://db.onlinewebfonts.com/c/17e068270b70e7f69ae239a5e22f1715?family=Lazenby+Computer+Smooth);
 
 
-h2 {
-    font-family: 'Jupiteroid', sans-serif;
-    color: #C7D6D5;
-    padding:25px;
-    margin:10px
+.notDone h2, .done h2 {
+  font-family: 'Jupiteroid', sans-serif;
+  color: #C7D6D5;
+  padding:20px;
+  margin:20px;
+  background-color: #C7D6D530;
+  border-radius: 25px;
+  width: fit-content;
 }
 
 
 .container {
     display: inline;
     align-items: start;
+}
+
+.noTodos h2{
+  font-family: 'Jupiteroid', sans-serif;
+  color: #C7D6D5;
+  display: block;
+}
+
+.noTodos img {
+  width: auto;
+  height: auto;
+  margin: auto;
+  margin-bottom: 100px;
+  display: block;
 }
 .todoElement {
     display: flex;
@@ -24,16 +41,38 @@ h2 {
     background-color: #C7D6D5;
     color: #0C0F12;
     border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 10px #C7D6D550;
     font-family: Arial, sans-serif;
+    transition: transform 0.3s ease;
+  }
+  .done {
+    font-family: 'Jupiteroid', sans-serif;
+    color: #C7D6D5;
+    display: block;
+  }
+
+ .todoElement:hover {
+    transform: scale(1.01);
+    box-shadow: 5px 5px 20px #C7D6D580;
   }
   
   .todo-text {
     font-size: 26px;
     font-weight: 500;
     font-family: 'Jupiteroid', sans-serif;
+    transition: transform 0.3s ease;
   }
   
+  .todo-desc {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Jupiteroid', sans-serif;
+    background-color: #ECEBF3;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
   .todo-icons {
     display: flex;
     align-items: center;
@@ -52,6 +91,7 @@ h2 {
     font-family: 'Lazenby Computer Smooth', sans-serif;
     font-size: 17px;
     letter-spacing: 0.18em;
+    transition: transform 0.3s ease;
   }
   
   .todo-button img {
@@ -61,9 +101,29 @@ h2 {
   }
   
   .icon {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     margin-left: 25px;
+    padding: 2.5px;
+    background-color: #C7D6D5;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
     cursor: pointer;
   }
+  
+  .icon:hover {
+    transform: scale(1.1);
+    background-color: #ECEBF375;
+  }
+
+  .icon:active {
+    transform: scale(1.2);
+    background-color: #ECEBF3;
+  }
+
+  .todo-button:hover {
+    transform: scale(1.1);
+  }
+
+
   

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import './SignupForm.css'
 
-const SignupForm = () => {
+const SignupForm = (isLoggedIn) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullName] = useState('');
@@ -17,9 +17,7 @@ const SignupForm = () => {
 
       const headers = {
         'Content-Type': 'application/json',
-        // Add any other headers as needed
       };
-
 
       const response = await axios.post('http://localhost:3001/signup', {
         email: email,
@@ -28,6 +26,7 @@ const SignupForm = () => {
       }, { headers });
 
       Cookies.set('token', response.data.token);
+      //Cookies.set('username', response.data.fullname.split(' ')[0]);
       alert("Signed up successfully")
       navigate('/user')
     } catch (error) {

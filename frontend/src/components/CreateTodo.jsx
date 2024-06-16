@@ -36,7 +36,7 @@ const CreateTodo = () => {
     }, { headers: headers })
   }
   return (
-    <div>
+    <div className='newTodoContainer'>
       <h2>Add New Task</h2>
       <input id='title' placeholder='Title' type='text' onChange={function (e) {
         setTitle(e.target.value);

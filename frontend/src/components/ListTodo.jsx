@@ -4,6 +4,7 @@ import trashIcon from '../assets/trash-alt-solid.svg'
 import clock from '../assets/clock.svg'
 import repeat from '../assets/repeat.svg'
 import doneIcon from '../assets/check-solid.svg'
+import question from '../assets/asking-question.svg'
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
@@ -41,6 +42,7 @@ const ListTodo = ({ todos }) => {
     <div className='container'>
       <div key={todo._id} className='todoElement'>
           <span className="todo-text">{todo.title}</span>
+          <span className="todo-desc">{todo.description}</span>
           <div className="todo-icons">
             <button className="todo-button">
               <img src={clock} alt="Time" />
@@ -66,14 +68,24 @@ const ListTodo = ({ todos }) => {
 
   return (
     <>
+    {/* //Render this if no todos are present */}
+    {todos.length === 0 ? (
+      <div className="noTodos">
+        <h2>Let’s jot down all your tasks to get you up and running</h2>
+        <img src={question} alt='asking question'/>
+      </div>
+    ) : (
+      <>
+      {/* //Render this if todos are present */}
       <div className='notDone'>
-        <h2>Here are your tasks,</h2>
+        <h2>Here are your tasks</h2>
         {notDoneTodos.map(renderTodo)}
       </div>
       <div className="done">
         <h2>Completed Tasks</h2>
         {doneTodos.map(renderTodo)}
-      </div>
+      </div></>
+    )}
     </>
   );
 }
