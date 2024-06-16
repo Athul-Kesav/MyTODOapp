@@ -19,7 +19,7 @@ const SignupForm = (isLoggedIn) => {
         'Content-Type': 'application/json',
       };
 
-      const response = await axios.post('http://localhost:3001/signup', {
+      const response = await axios.post('https://https://done-it-six.vercel.app/signup', {
         email: email,
         password: password,
         fullname: fullname,
