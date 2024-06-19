@@ -56,9 +56,10 @@
 
 .signup-btn,
 .submit-btn {
-    border-radius: 20px;
+    border-radius: 5px;
     color: #C20114;
     background-color: #EDDDD4;
+    margin:10px;
     border:none;
     outline: none;
     padding: 5px 15px;
@@ -72,6 +73,11 @@
     margin: 35px;
     padding: 8px 15px;
     font-size: 18px;
+}
+
+.submit-btn:hover, .signup-btn:hover, .member-link button:hover {
+    background-color: #C20114;
+    color: #EDDDD4;
 }
 
 /* box-shadow: h-offset v-offset blur spread color; */

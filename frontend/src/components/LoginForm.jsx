@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import './LoginForm.css'
 
-const LoginForm = (logFunc) => {
+const LoginForm = ({onLogin}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullName] = useState('');
@@ -28,6 +28,7 @@ const LoginForm = (logFunc) => {
 
       Cookies.set('token', response.data.token);
       Cookies.set('username', fullname.split(' ')[0]);
+      onLogin();
       alert("Logged in Successfully")
       navigate('/user')
     } catch (error) {

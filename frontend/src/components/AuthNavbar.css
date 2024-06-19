@@ -77,11 +77,21 @@ ul li div {
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    box-shadow: 2px 2px 10px 1px gray;
+    box-shadow: 2px 2px 10px 1px #0c0f1285;
     text-align: center;
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+.navButton:hover {
+    background-color: #EDDDD4;
+    color: #0c0f12;
+}
+
+.navButton:active {
+    background-color: #0c0f12;
+    color: #EDDDD4;
 }
 
 .logo, .unAuthLogo {

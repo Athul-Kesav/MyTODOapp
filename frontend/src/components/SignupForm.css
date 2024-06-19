@@ -49,20 +49,27 @@
     border: none;
     background-color: transparent;
     margin: 10px;
+    border-radius: 5px;
 }
 
 .login-btn,
 .submit-btn {
-    border-radius: 20px;
+    border-radius: 5px;
     color: #C20114;
     background-color: #EDDDD4;
     border:none;
     outline: none;
     padding: 5px 15px;
+    margin: 10px;
     cursor: pointer;
     font-size: 15px;
     font-family: 'Jupiteroid', sans-serif;
     box-shadow: 2px 2px 10px 1px gray;
+}
+
+.login-btn:hover {
+    background-color: #C20114;
+    color: #EDDDD4;
 }
 
 .submit-btn {

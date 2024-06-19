@@ -9,6 +9,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  useLocation,
 } from "react-router-dom";
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
@@ -18,16 +19,22 @@ function App() {
 
   const [loading, setLoading] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
+  
 
   useEffect(() => {
     setTimeout(function () {
       setLoading(false);
     }, 3000)
 
-    if(Cookies.get('token')){
-      setLoggedIn(true);
+    if (!Cookies.get('token') && window.location.pathname === '/User') {
+      window.location.href = '/';
     }
-  }, [loading]);
+    
+  }, []);
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
 
   return (
     <Router>
@@ -36,8 +43,8 @@ function App() {
           {loggedIn ? <AuthNavBar /> : <UnAuthNavBar />}
           <Routes>
             <Route exact path="/" element={<Hero />} />
-            <Route path="/Signup" element={<Signup />} />
-            <Route path="/Login" element={<Login />} />
+            <Route path="/Signup" element={<Signup onLogin={handleLogin}/>} />
+            <Route path="/Login" element={<Login onLogin={handleLogin}/>} />
             <Route path='/User' element={<User />} />
           </Routes>
         </>

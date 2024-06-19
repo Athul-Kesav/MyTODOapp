@@ -3,13 +3,11 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const cors = require('cors');
+require('dotenv').config();
 
 const { signupLogin, createTODO } = require('./types');
-const { mdbURL, jwtSecret } = require('./pass');
+const { mdbURL, jwtSecret, PORT } = { mdbURL: process.env.MDB_URL, jwtSecret: process.env.JWT_SECRET, PORT: process.env.PORT}
 const { USER } = require('./db');
-
-
-const PORT = 3001;
 
 const app = express();
 mongoose.connect(mdbURL);

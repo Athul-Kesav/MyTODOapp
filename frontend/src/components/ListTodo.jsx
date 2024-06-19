@@ -40,8 +40,8 @@ const ListTodo = memo(({ todos }) => {
   }
 
   const renderTodo = (todo) => (
-    <div className='container'>
-      <div key={todo._id} className='todoElement'>
+    <div className='container' key={todo._id}>
+      <div className='todoElement'>
         <span className="todo-text">{todo.title}</span>
         <span className="todo-desc">{todo.description}</span>
         <div className="todo-icons">

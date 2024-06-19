@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import './SignupForm.css'
 
-const SignupForm = () => {
+const SignupForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullName] = useState('');
@@ -27,6 +27,7 @@ const SignupForm = () => {
 
       Cookies.set('token', response.data.token);
       Cookies.set('username', fullname.split(' ')[0]);
+      onLogin();
       alert("Signed up successfully")
       navigate('/user')
     } catch (error) {

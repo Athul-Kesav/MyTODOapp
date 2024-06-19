@@ -6,11 +6,6 @@ const signupLogin = zod.object({
     fullname: zod.string(),
 });
 
-const updateTODO = zod.object({
-    id: zod.string(),
-    status: zod.boolean(),
-});
-
 const createTODO = zod.object({
     title: zod.string(),
     description: zod.string(),
@@ -20,7 +15,6 @@ const createTODO = zod.object({
 
 module.exports = {
     signupLogin,
-    updateTODO,
     createTODO,
 };
 
