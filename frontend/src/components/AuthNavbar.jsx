@@ -12,16 +12,21 @@ const Navbar = () => {
 
             <img id='menu' src={menu} alt='menuHam' />
             <h2>
-                <center>
                 <Link to='/' className='logo'>
-                    Hello, {Cookies.get('username')}
+                    DoneIT
                 </Link>
-                </center>
             </h2>
+            <h2>
+                Hello, 
+            </h2>
+            <h2 className='username'>
+                {Cookies.get('username')}
+            </h2>
+
             <div>
                 <ul>
                     <li>
-                        <Link to='/Login' className='navButton'>login</Link>   
+                        <Link to='/Login' className='navButton'>login</Link>
                     </li>
                     <li>
                         <Link to='/Signup' className='navButton'>signup</Link>

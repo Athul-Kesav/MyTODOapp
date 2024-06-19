@@ -28,7 +28,7 @@ const CreateTodo = () => {
       "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
     }
 
-    await axios.post('https://https://done-it-six.vercel.app/create-todo', {
+    await axios.post('http://localhost:3001/create-todo', {
       title: title,
       description: description,
       deadline: ` ${deadline}`,

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import './LoginForm.css'
 
-const LoginForm = () => {
+const LoginForm = (logFunc) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullName] = useState('');
@@ -21,7 +21,7 @@ const LoginForm = () => {
       };
 
 
-      const response = await axios.post('https://https://done-it-six.vercel.app/login', {
+      const response = await axios.post('http://localhost:3001/login', {
         email: email,
         password: password,
         fullname: fullname,
@@ -30,6 +30,7 @@ const LoginForm = () => {
       Cookies.set('token', response.data.token);
       //Cookies.set('username', response.data.fullname.split(' ')[0]);
       alert("Logged in Successfully")
+      logFunc(true);
       navigate('/user')
     } catch (error) {
       console.error('Axios Error submitting form:', error);

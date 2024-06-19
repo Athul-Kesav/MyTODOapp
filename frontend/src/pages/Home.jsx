@@ -31,8 +31,8 @@ function App() {
           {loggedIn ? <AuthNavBar /> : <UnAuthNavBar />}
           <Routes>
             <Route exact path="/" element={<Hero />} />
-            <Route path="/Signup" element={<Signup isLoggedIn={loggedIn}/>} />
-            <Route path="/Login" element={<Login isLoggedIn={loggedIn}/>} />
+            <Route path="/Signup" element={<Signup logFunc={setLoggedIn}/>} />
+            <Route path="/Login" element={<Login logFunc={setLoggedIn}/>} />
             <Route path='/User' element={<User />} />
           </Routes>
         </>

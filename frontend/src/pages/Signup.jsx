@@ -4,7 +4,7 @@ import sgPic2 from '../assets/SignupPic2.svg'
 import SignupForm from '../components/SignupForm'
 import './Signup.css'
 
-const Signup = (isLoggedIn) => {
+const Signup = (logFunc) => {
   return (
     <>
       <div className='signupContainer'>
@@ -12,7 +12,7 @@ const Signup = (isLoggedIn) => {
           <img src={sgPic1} alt='form-filling' />
         </div>
         <div className='signSubCont2'>
-          <SignupForm isLoggedIn={isLoggedIn}/>
+          <SignupForm logFunc={logFunc}/>
         </div>
         <div className='signSubCont3'>
           <img src={sgPic2} alt='painting' />
