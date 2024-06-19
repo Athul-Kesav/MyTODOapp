@@ -59,24 +59,11 @@ ul li {
     align-items: center;
 }
 
-.logo {
-    font-family: "Lazenby Computer Smooth", sans-serif;
-    font-size: 2.5vw;
-    position: absolute;
-    left: 23vw;
-    top:2.3vh;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    text-align: center;
-    color: #0c0f12;
-}
-
-.username {
-    font-family: 'Chelsea', sans-serif;
-    font-size: 1.5vw;
-    color: #0c0f12;
-    margin-right: 20px;
+ul li div {
+    border-radius: 50%;
+    background-color: #0c0f12;
+    width: 35px;
+    height: 35px;
 }
 
 .navButton {
@@ -88,9 +75,40 @@ ul li {
     padding: 12px 20px;
     width: 120px;
     align-items: center;
-    justify-content: baseline;
+    justify-content: center;
     border-radius: 5px;
     box-shadow: 2px 2px 10px 1px gray;
     text-align: center;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
 
+.logo, .unAuthLogo {
+    font-family: "Lazenby Computer Smooth", sans-serif;
+    font-size: 1.5vw;
+    position: absolute;
+    left:10vw;
+    top:3.5vh;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    text-align: center;
+    color: #0c0f12;
+}
+
+.unAuthLogo {
+    position: absolute;
+    left: 46vw;
+    font-size: 2.5vw;
+    top:2.3vh;
+}
+
+.username {
+    font-family: 'Chelsea', sans-serif;
+    font-size: 2.5vw;
+    color: #0c0f12;
+    margin-right: 20px;
+    position:absolute;
+    left: 44vw;
+}

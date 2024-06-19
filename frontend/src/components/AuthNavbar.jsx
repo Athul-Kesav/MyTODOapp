@@ -1,35 +1,46 @@
 import React from 'react'
 import Cookies from 'js-cookie'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './AuthNavbar.css'
 import searchIcon from '../assets/search-solid.svg'
 import menu from '../assets/barcode-solid.svg'
 
 const Navbar = () => {
 
+    const navigate = useNavigate();
+
+    function logout(){
+        Cookies.remove('token');
+        Cookies.remove('username');
+        window.location.href = '/';
+    }
+
+    function myTasks(){
+        navigate('/user')
+    }
+
     return (
         <div className='navbar'>
-
-            <img id='menu' src={menu} alt='menuHam' />
-            <h2>
-                <Link to='/' className='logo'>
-                    DoneIT
-                </Link>
-            </h2>
-            <h2>
-                Hello, 
-            </h2>
+            <div>
+                <img id='menu' src={menu} alt='menuHam' />
+                <h2>
+                    <Link to='/' className='logo'>
+                        DoneIT
+                    </Link>
+                </h2>
+            </div>
             <h2 className='username'>
-                {Cookies.get('username')}
+                Hello, {Cookies.get('username')}
             </h2>
-
             <div>
                 <ul>
                     <li>
-                        <Link to='/Login' className='navButton'>login</Link>
+                        <button className='navButton' onClick={logout}>Logout</button>
                     </li>
                     <li>
-                        <Link to='/Signup' className='navButton'>signup</Link>
+                        <div onClick={myTasks} className='navButton'>
+                            Tasks
+                        </div>
                     </li>
                 </ul>
                 <div className='searchBar'>

@@ -20,7 +20,6 @@ const LoginForm = (logFunc) => {
         // Add any other headers as needed
       };
 
-
       const response = await axios.post('http://localhost:3001/login', {
         email: email,
         password: password,
@@ -28,9 +27,8 @@ const LoginForm = (logFunc) => {
       }, { headers });
 
       Cookies.set('token', response.data.token);
-      //Cookies.set('username', response.data.fullname.split(' ')[0]);
+      Cookies.set('username', fullname.split(' ')[0]);
       alert("Logged in Successfully")
-      logFunc(true);
       navigate('/user')
     } catch (error) {
       console.error('Axios Error submitting form:', error);

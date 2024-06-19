@@ -4,6 +4,7 @@ import AuthNavBar from '../components/AuthNavbar.jsx'
 import UnAuthNavBar from '../components/UnAuthNavbar.jsx'
 import Hero from '../components/Hero.jsx';
 import PreLoader from '../components/PreLoader.jsx';
+import Cookies from 'js-cookie';
 import {
   BrowserRouter as Router,
   Routes,
@@ -22,7 +23,11 @@ function App() {
     setTimeout(function () {
       setLoading(false);
     }, 3000)
-  }, []);
+
+    if(Cookies.get('token')){
+      setLoggedIn(true);
+    }
+  }, [loading]);
 
   return (
     <Router>
@@ -31,8 +36,8 @@ function App() {
           {loggedIn ? <AuthNavBar /> : <UnAuthNavBar />}
           <Routes>
             <Route exact path="/" element={<Hero />} />
-            <Route path="/Signup" element={<Signup logFunc={setLoggedIn}/>} />
-            <Route path="/Login" element={<Login logFunc={setLoggedIn}/>} />
+            <Route path="/Signup" element={<Signup />} />
+            <Route path="/Login" element={<Login />} />
             <Route path='/User' element={<User />} />
           </Routes>
         </>

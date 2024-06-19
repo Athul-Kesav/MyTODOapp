@@ -1,4 +1,4 @@
-import { React } from 'react';
+import { React, memo } from 'react';
 import axios, { all } from 'axios';
 import Cookies from 'js-cookie';
 import './ListTodo.css'
@@ -9,7 +9,7 @@ import doneIcon from '../assets/check-solid.svg'
 import question from '../assets/asking-question.svg'
 import allDone from '../assets/noTodos.svg'
 
-const ListTodo = ({ todos }) => {
+const ListTodo = memo(({ todos }) => {
 
   const getTimeFromDate = (dateString) => {
     const date = new Date(dateString);
@@ -24,7 +24,7 @@ const ListTodo = ({ todos }) => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
       }
-      await axios[method]('http://localhost:3001/update-todo', {
+      await axios[method]('http://localhost:3001/user/update-todo', {
         id: todo._id
       }, { headers: header });
     } catch (error) {
@@ -100,5 +100,5 @@ const ListTodo = ({ todos }) => {
       )}
     </div>
   )
-}
+})
 export default ListTodo

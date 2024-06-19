@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const cors = require('cors');
 
-const { signupLogin, createTODO, updateTODO } = require('./types');
+const { signupLogin, createTODO } = require('./types');
 const { mdbURL, jwtSecret } = require('./pass');
 const { USER } = require('./db');
 
@@ -237,8 +237,6 @@ app.get('/user/todos', authenticateJWT, async (req, res) => {
         return res.status(500).send({ error: 'Internal server error' });
     }
 })
-
-
 
 
 //LISTEN FOR REQUESTS

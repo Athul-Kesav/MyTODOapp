@@ -11,7 +11,7 @@ const UnAuthNavbar = () => {
             <img id='menu' src={menu} alt='menuHam' />
             <h2>
                 <center>
-                <Link to='/' className='logo'>
+                <Link to='/' className='unAuthLogo'>
                     DoneIT
                 </Link>
                 </center>

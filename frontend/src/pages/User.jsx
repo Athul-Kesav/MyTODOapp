@@ -13,23 +13,24 @@ function User() {
       try {
         const header = {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
+          "Authorization": `Bearer ${Cookies.get('token')?.split(' ')[1]}`, // Add optional chaining to avoid errors
         }
-        const response = await axios.get('http://localhost:3001/user/todos',{ headers: header });
+        const response = await axios.get('http://localhost:3001/user/todos', { headers: header });
         setTodos(response.data.todos);
       } catch (error) {
         console.error("There was an error fetching the todos!", error);
       }
     }
 
-    const intervalId = setInterval(fetchTodo, 2000);
-    
     // Fetch todos immediately on mount
     fetchTodo();
 
+    // Set up the interval to fetch todos every 3 seconds
+    const intervalId = setInterval(fetchTodo, 3000);
+
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, []); 
+  }, []);
 
   return (
     <>

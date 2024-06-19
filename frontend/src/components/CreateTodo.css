@@ -10,7 +10,7 @@
     margin: 20px;
     margin-top: 80px;
     padding: 20px;
-    padding-top:26px;
+    padding-top:15px;
     width: auto;
     background-color: #C7D6D5;
     border-radius: 20px;
@@ -36,14 +36,11 @@
     font-size: 25px;
     color: #0C0F12;
     box-shadow: 5px 5px #0C0F1250;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.5s ease-in-out;
     transition: transform 0.3s ease;
 }
 
-.newTodoContainer input:focus {
-    outline: none;
-    box-shadow: 10px 10px #0C0F1250;
-}
+
 
 .newTodoContainer input::placeholder {
     font-family: 'Jupiteroid', sans-serif;
@@ -51,6 +48,11 @@
 }
 
 .newTodoContainer input:hover {
+    transform: translateX(-2px) translateY(-2px);
+}
+
+.newTodoContainer input:focus {
+    outline: none;
     box-shadow: 10px 10px #0C0F1250;
     transform: translateX(-2px) translateY(-2px);
 }

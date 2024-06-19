@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import './SignupForm.css'
 
-const SignupForm = (isLoggedIn) => {
+const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullName] = useState('');
@@ -28,7 +28,6 @@ const SignupForm = (isLoggedIn) => {
       Cookies.set('token', response.data.token);
       Cookies.set('username', fullname.split(' ')[0]);
       alert("Signed up successfully")
-      logFunc(true);
       navigate('/user')
     } catch (error) {
       console.error('Axios Error submitting form:', error);

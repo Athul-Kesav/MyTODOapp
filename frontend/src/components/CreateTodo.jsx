@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from 'axios'
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import './CreateTodo.css'
 import Cookies from 'js-cookie';
 
-const CreateTodo = () => {
+const CreateTodo = memo(() => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [date, setDate] = useState('');
@@ -28,7 +28,7 @@ const CreateTodo = () => {
       "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
     }
 
-    await axios.post('http://localhost:3001/create-todo', {
+    await axios.post('http://localhost:3001/user/create-todo', {
       title: title,
       description: description,
       deadline: ` ${deadline}`,
@@ -66,6 +66,6 @@ const CreateTodo = () => {
       <button type='button' onClick={sender}>Add Todo</button>
     </div>
   )
-}
+})
 
 export default CreateTodo
