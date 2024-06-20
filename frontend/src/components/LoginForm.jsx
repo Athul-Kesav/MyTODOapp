@@ -4,6 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import './LoginForm.css'
 
+const HOST = import.meta.env.VITE_HOST
+const LOGIN_ROUTE = import.meta.env.VITE_LOGIN_ROUTE
+
+
 const LoginForm = ({onLogin}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,11 +24,19 @@ const LoginForm = ({onLogin}) => {
         // Add any other headers as needed
       };
 
-      const response = await axios.post('http://localhost:3001/login', {
+      console.log(`${HOST}${LOGIN_ROUTE}`)
+
+      const response = await axios.post(`${HOST}${LOGIN_ROUTE}`, {
         email: email,
         password: password,
         fullname: fullname,
       }, { headers });
+
+      console.log(response.data)
+
+      if(response.status === 404){
+        alert("User Not Found")
+      }
 
       Cookies.set('token', response.data.token);
       Cookies.set('username', fullname.split(' ')[0]);

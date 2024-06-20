@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import './SignupForm.css'
 
+const HOST = import.meta.env.VITE_HOST
+const SIGNUP_ROUTE = import.meta.env.VITE_SIGNUP_ROUTE
+
 const SignupForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +22,7 @@ const SignupForm = ({ onLogin }) => {
         'Content-Type': 'application/json',
       };
 
-      const response = await axios.post('http://localhost:3001/signup', {
+      const response = await axios.post(`${HOST}${SIGNUP_ROUTE}`, {
         email: email,
         password: password,
         fullname: fullname,

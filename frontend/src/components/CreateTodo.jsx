@@ -4,11 +4,12 @@ import { useState, memo } from 'react';
 import './CreateTodo.css'
 import Cookies from 'js-cookie';
 
+const HOST = import.meta.env.VITE_HOST
+const CREATE_TODOS_ROUTE = import.meta.env.VITE_CREATE_TODOS_ROUTE
+
 const CreateTodo = memo(() => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
   const [deadline, setDeadline] = useState(null)
 
 
@@ -28,7 +29,7 @@ const CreateTodo = memo(() => {
       "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
     }
 
-    await axios.post('http://localhost:3001/user/create-todo', {
+    await axios.post(`${HOST}${CREATE_TODOS_ROUTE}`, {
       title: title,
       description: description,
       deadline: ` ${deadline}`,
@@ -45,23 +46,15 @@ const CreateTodo = memo(() => {
         setDescription(e.target.value);
       }} /> <br />
       <input
-        type="date"
+        type="datetime-local"
         id="date"
         value={date}
         onChange={function (e) {
-          setDate(e.target.value);
-        }}
-        required
-      /> <br />
-      <input
-        type="time"
-        id="time"
-        value={time}
-        onChange={function (e) {
-          setTime(e.target.value);
+          setDeadline(e.target.value);
         }}
         required
       />
+      <p>Deadline selected: {deadline}</p>
       <br />
       <button type='button' onClick={sender}>Add Todo</button>
     </div>

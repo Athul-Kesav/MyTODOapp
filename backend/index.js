@@ -20,7 +20,6 @@ const hasher = (pass) => {
     const hash = crypto.createHash('sha256');
     hash.update(pass);
     return hash.digest('hex');
-
 }
 
 //Middlewares

@@ -9,6 +9,9 @@ import doneIcon from '../assets/check-solid.svg'
 import question from '../assets/asking-question.svg'
 import allDone from '../assets/noTodos.svg'
 
+const HOST = import.meta.env.VITE_HOST
+const UPDATE_TODOS_ROUTE = import.meta.env.VITE_UPDATE_TODOS_ROUTE
+
 const ListTodo = memo(({ todos }) => {
 
   const getTimeFromDate = (dateString) => {
@@ -24,7 +27,7 @@ const ListTodo = memo(({ todos }) => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
       }
-      await axios[method]('http://localhost:3001/user/update-todo', {
+      await axios[method](`${HOST}${UPDATE_TODOS_ROUTE}`, {
         id: todo._id
       }, { headers: header });
     } catch (error) {

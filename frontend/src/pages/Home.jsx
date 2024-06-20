@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './Home.css';
 import AuthNavBar from '../components/AuthNavbar.jsx'
 import UnAuthNavBar from '../components/UnAuthNavbar.jsx'
@@ -9,7 +9,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useLocation,
 } from "react-router-dom";
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
@@ -32,9 +31,9 @@ function App() {
     
   }, []);
 
-  const handleLogin = () => {
+  const handleLogin = useCallback( () => {
     setLoggedIn(true);
-  };
+  });
 
   return (
     <Router>
