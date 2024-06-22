@@ -13,12 +13,15 @@ import {
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
 import User from './User.jsx';
+import { LoginContext } from '../contexts/loginContext.jsx';
 
 function App() {
 
   const [loading, setLoading] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
-  
+
+  const login = () => setLoggedIn(true);
+  const logout = () => setLoggedIn(false);
 
   useEffect(() => {
     setTimeout(function () {
@@ -31,24 +34,22 @@ function App() {
     
   }, []);
 
-  const handleLogin = useCallback( () => {
-    setLoggedIn(true);
-  });
-
   return (
+    <LoginContext.Provider value={{ login, logout }}>
     <Router>
       {loading ? <PreLoader /> : (
         <>
           {loggedIn ? <AuthNavBar /> : <UnAuthNavBar />}
           <Routes>
             <Route exact path="/" element={<Hero />} />
-            <Route path="/Signup" element={<Signup onLogin={handleLogin}/>} />
-            <Route path="/Login" element={<Login onLogin={handleLogin}/>} />
+            <Route path="/Signup" element={<Signup/>} />
+            <Route path="/Login" element={<Login />} />
             <Route path='/User' element={<User />} />
           </Routes>
         </>
       )}
     </Router>
+    </LoginContext.Provider>
   );
 }
 

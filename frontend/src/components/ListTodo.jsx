@@ -1,6 +1,7 @@
-import { React, memo } from 'react';
-import axios, { all } from 'axios';
+import { React, memo, useState } from 'react';
+import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 import './ListTodo.css'
 import trashIcon from '../assets/trash-alt-solid.svg'
 import clock from '../assets/clock.svg'
@@ -14,12 +15,41 @@ const UPDATE_TODOS_ROUTE = import.meta.env.VITE_UPDATE_TODOS_ROUTE
 
 const ListTodo = memo(({ todos }) => {
 
+  const [newTitle, setNewTitle] = useState('');
+  const [newDescription, setNewDescription] = useState('');
+  const [newDeadline, setNewDeadline] = useState('');
+
+  const [isExapanded, setIsExpanded] = useState(false);
+
+  const navigate = useNavigate()
+
+  const headers = {
+    'Content-Type': 'application/json',
+    "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
+  }
+
+  const updateTodo = async () => {
+    console.log('Updating todo')
+    const response = await axios.post(`${HOST}${UPDATE_INFO_ROUTE}`, {
+      title: newTitle,
+      description: newDescription,
+      deadline: newDeadline,
+      status: false,
+    }, { headers: headers });
+    console.log(response.data);
+  }
+
+  const openEditor = () => {
+    console.log('Opening editor')
+    setIsExpanded(true);
+  }
+
   const getTimeFromDate = (dateString) => {
     const date = new Date(dateString);
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
     return `${hours}${minutes}`;
-  };
+  }
 
   async function fetcher(todo, method) {
     try {
@@ -34,6 +64,7 @@ const ListTodo = memo(({ todos }) => {
       console.error("There was an error fetching the todos!", error);
     }
   }
+
   const setAsDone = (todo) => {
     fetcher(todo, 'put')
   }
@@ -43,28 +74,37 @@ const ListTodo = memo(({ todos }) => {
   }
 
   const renderTodo = (todo) => (
-    <div className='container' key={todo._id}>
-      <div className='todoElement'>
-        <span className="todo-text">{todo.title}</span>
-        <span className="todo-desc">{todo.description}</span>
-        <div className="todo-icons">
-          <button className="todo-button">
-            <img src={clock} alt="Time" />
-            {getTimeFromDate(todo.deadline)}
-          </button>
-          <img src={repeat} alt="Repeat" className="icon" />
-          {(todo.status) ? (
-            <img src={trashIcon} alt="Trash" className='icon' onClick={() => {
-              removeTodo(todo)
-            }} />
-          ) : (
-            <img src={doneIcon} alt='done' className='icon' onClick={() => {
-              setAsDone(todo)
-            }} />
-          )}
+    <>
+      {isExapanded ? (
+      <div>
+        {/* Editor View */}
+      </div>) : (
+        <div className='container' key={todo._id} onClick={openEditor}>
+          {/* Normal View */}
+          <div className='todoElement'>
+            <span className="todo-text">{todo.title}</span>
+            <span className="todo-desc">{todo.description}</span>
+            <div className="todo-icons">
+              <button className="todo-button">
+                <img src={clock} alt="Time" />
+                {getTimeFromDate(todo.deadline)}
+              </button>
+              <img src={repeat} alt="Repeat" className="icon" />
+              {(todo.status) ? (
+                <img src={trashIcon} alt="Trash" className='icon' onClick={() => {
+                  removeTodo(todo)
+                }} />
+              ) : (
+                <img src={doneIcon} alt='done' className='icon' onClick={() => {
+                  setAsDone(todo)
+                }} />
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )
+      }
+    </>
   )
 
   const doneTodos = todos.filter(todo => todo.status);

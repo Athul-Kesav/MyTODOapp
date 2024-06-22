@@ -18,6 +18,12 @@
 .container {
   display: inline;
   align-items: start;
+  transition: height 0.3s ease;
+}
+
+.container:focus {
+  outline: none;
+  height: 90vh;
 }
 
 .noTodos h2 {
@@ -60,6 +66,11 @@
 }
 
 .todo-text {
+  width: 200px;
+  /* Set fixed width as per your requirement */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: 26px;
   font-weight: 500;
   font-family: 'Jupiteroid', sans-serif;
@@ -67,6 +78,11 @@
 }
 
 .todo-desc {
+  width: 200px;
+  /* Set fixed width as per your requirement */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   font-size: 20px;
   font-weight: 400;
   font-family: 'Jupiteroid', sans-serif;
@@ -127,3 +143,14 @@
 .todo-button:hover {
   transform: scale(1.1);
 }
+
+.todo-button:active {
+  transform: scale(1.2);
+}
+
+.todo-button img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+

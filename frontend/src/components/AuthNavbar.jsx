@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Cookies from 'js-cookie'
 import { Link, useNavigate } from "react-router-dom";
+import { LoginContext } from '../contexts/loginContext';
 import './AuthNavbar.css'
 import searchIcon from '../assets/search-solid.svg'
 import menu from '../assets/barcode-solid.svg'
 
 const Navbar = () => {
 
+    const { logout } = useContext(LoginContext);
     const navigate = useNavigate();
 
-    function logout(){
+    function logOut(){
         Cookies.remove('token');
         Cookies.remove('username');
+        logout();
         window.location.href = '/';
     }
 
@@ -35,7 +38,7 @@ const Navbar = () => {
             <div>
                 <ul>
                     <li>
-                        <button className='navButton' onClick={logout}>Logout</button>
+                        <button className='navButton' onClick={logOut}>Logout</button>
                     </li>
                     <li>
                         <div onClick={myTasks} className='navButton'>

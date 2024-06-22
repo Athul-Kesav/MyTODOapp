@@ -1,17 +1,18 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
+import { LoginContext } from '../contexts/loginContext.jsx';
 import './LoginForm.css'
 
 const HOST = import.meta.env.VITE_HOST
 const LOGIN_ROUTE = import.meta.env.VITE_LOGIN_ROUTE
 
 
-const LoginForm = ({onLogin}) => {
+const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [fullname, setFullName] = useState('');
+  const { login } = useContext(LoginContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -24,24 +25,23 @@ const LoginForm = ({onLogin}) => {
         // Add any other headers as needed
       };
 
-      console.log(`${HOST}${LOGIN_ROUTE}`)
-
       const response = await axios.post(`${HOST}${LOGIN_ROUTE}`, {
         email: email,
         password: password,
-        fullname: fullname,
       }, { headers });
 
-      console.log(response.data)
-
-      if(response.status === 404){
+      if(response.status === 200) {
+        alert("Logged in Successfully")
+        login();
+      } else if (response.status === 401){
+        alert("Incorrect Password")
+      } else {
         alert("User Not Found")
       }
 
+
       Cookies.set('token', response.data.token);
-      Cookies.set('username', fullname.split(' ')[0]);
-      onLogin();
-      alert("Logged in Successfully")
+      Cookies.set('username', response.data.username.split(' ')[0]);
       navigate('/user')
     } catch (error) {
       console.error('Axios Error submitting form:', error);
@@ -61,9 +61,6 @@ const LoginForm = ({onLogin}) => {
         </div>
         <div className="input-group">
           <input type="password" placeholder="PASS" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <div className="input-group">
-          <input type="text" placeholder="FULL NAME" value={fullname} onChange={(e) => setFullName(e.target.value)} required />
         </div>
         <div className="member-link">
           New Here?

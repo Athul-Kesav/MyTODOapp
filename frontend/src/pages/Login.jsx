@@ -4,7 +4,7 @@ import lgPic2 from '../assets/LoginPic2.svg'
 import LoginForm from '../components/LoginForm'
 import './Login.css'
 
-const Login = ({onLogin}) => {
+const Login = () => {
   return (
     <>
       <div className='loginContainer'>
@@ -12,7 +12,7 @@ const Login = ({onLogin}) => {
           <img src={lgPic1} alt='form-filling' />
         </div>
         <div className='lsubCont2'>
-          <LoginForm onLogin={onLogin}/>
+          <LoginForm />
         </div>
         <div className='lsubCont3'>
           <img src={lgPic2} alt='painting' />

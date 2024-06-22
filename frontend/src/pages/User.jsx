@@ -7,6 +7,7 @@ import ListTodo from '../components/ListTodo.jsx';
 
 const HOST = import.meta.env.VITE_HOST
 const GET_TODOS_ROUTE = import.meta.env.VITE_GET_TODOS_ROUTE
+const UPDATE_INFO_ROUTE = import.meta.env.VITE_UPDATE_INFO_ROUTE
 
 function User() {
   const [todos, setTodos] = useState([]);
@@ -24,16 +25,15 @@ function User() {
         console.error("There was an error fetching the todos!", error);
       }
     }
-
     // Fetch todos immediately on mount
     fetchTodo();
-
     // Set up the interval to fetch todos every 3 seconds
     const intervalId = setInterval(fetchTodo, 3000);
-
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
+
+  
 
   return (
     <>

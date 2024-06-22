@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const cors = require('cors');
 require('dotenv').config();
 
-const { signupLogin, createTODO } = require('./types');
+const { signup, login, createTODO } = require('./types');
 const { mdbURL, jwtSecret, PORT } = { mdbURL: process.env.MDB_URL, jwtSecret: process.env.JWT_SECRET, PORT: process.env.PORT}
 const { USER } = require('./db');
 
@@ -59,7 +59,7 @@ const authenticateJWT = (req, res, next) => {
 //Routes
 
 //SIGNUP ROUTE
-app.post('/signup', zodVerifier(signupLogin), async function (req, res) {
+app.post('/signup', zodVerifier(signup), async function (req, res) {
     try {
         const existingUser = await USER.findOne({ email: req.body.email });
         if (existingUser) {
@@ -74,7 +74,6 @@ app.post('/signup', zodVerifier(signupLogin), async function (req, res) {
         const details = {
             email: req.body.email,
             password: hashPass,
-            fullname: req.body.fullname,
         }
 
         const user = new USER(details);
@@ -96,7 +95,7 @@ app.post('/signup', zodVerifier(signupLogin), async function (req, res) {
 
 
 //LOGIN ROUTE
-app.post('/login', zodVerifier(signupLogin), async (req, res) => {
+app.post('/login', zodVerifier(login), async (req, res) => {
     const existingUser = await USER.findOne({ email: req.body.email });
     if (!existingUser) {
         res.status(404).send({
@@ -110,13 +109,17 @@ app.post('/login', zodVerifier(signupLogin), async (req, res) => {
     const details = {
         email: req.body.email,
         password: hashPass,
-        fullname: existingUser.fullname,
     }
 
     if (existingUser.password === hashPass) {
         res.status(200).send({
             msg: "Logged in Successfully",
-            token: `Bearer ${jwt.sign(details, jwtSecret)}`
+            token: `Bearer ${jwt.sign(details, jwtSecret)}`,
+            username: existingUser.fullname
+        })
+    } else {
+        res.status(401).send({
+            msg: "Invalid Password"
         })
     }
 })
@@ -207,6 +210,33 @@ app.post('/user/update-todo', authenticateJWT, async function (req, res) {
         await user.save();
 
         return res.status(200).send({ message: 'TODO removed successfully' });
+    } catch (error) {
+        console.error('Error creating TODO:', error);
+        return res.status(500).send({ error: 'Internal server error' });
+    }
+})
+
+//UPDATE TODO INFO ROUTE
+app.post('/user/update-info', authenticateJWT, async function (req, res) {
+    const email = req.user.email;
+
+    try {
+        const user = await USER.findOne({ email: email });
+
+        const index = user.todos.findIndex(todo => todo._id.equals(req.body.id));
+
+        if (index !== -1) {
+            user.todos[index].title = req.body.title;
+            user.todos[index].description = req.body.description;
+            user.todos[index].deadline = req.body.deadline;
+            user.todos[index].status = req.body.status;
+        } else {
+            console.log(`Todo with id ${id} not found`);
+        }
+
+        await user.save();
+
+        return res.status(200).send({ msg: 'TODO updated successfully' });
     } catch (error) {
         console.error('Error creating TODO:', error);
         return res.status(500).send({ error: 'Internal server error' });

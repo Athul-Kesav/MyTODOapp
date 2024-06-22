@@ -15,14 +15,11 @@ const CreateTodo = memo(() => {
 
 
   async function sender() {
-    if (title === "" || description === "" || date === "" || time === "") {
+    if (title === "" || description === "" || deadline === "") {
       alert('Please fill all the fields');
       return;
     }
-    const combinedDateTime = `${date}T${time}`;
-    const dateTime = new Date(combinedDateTime);
-    const timestampValue = dateTime.getTime(); // Convert to timestamp (milliseconds since Unix Epoch)
-    setDeadline(timestampValue);
+    setDeadline(new Date(deadline)); // Convert to human-readable date time format
 
     const headers = {
       'Content-Type': 'application/json',
@@ -32,7 +29,7 @@ const CreateTodo = memo(() => {
     await axios.post(`${HOST}${CREATE_TODOS_ROUTE}`, {
       title: title,
       description: description,
-      deadline: ` ${deadline}`,
+      deadline: deadline.toString(),
       status: false
     }, { headers: headers })
   }
@@ -48,13 +45,12 @@ const CreateTodo = memo(() => {
       <input
         type="datetime-local"
         id="date"
-        value={date}
         onChange={function (e) {
           setDeadline(e.target.value);
         }}
         required
       />
-      <p>Deadline selected: {deadline}</p>
+      {/* <p>Deadline selected: {deadline}</p> */}
       <br />
       <button type='button' onClick={sender}>Add Todo</button>
     </div>

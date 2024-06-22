@@ -1,9 +1,14 @@
 const zod = require('zod');
 
-const signupLogin = zod.object({
+const signup = zod.object({
     email: zod.string().email(),
     password: zod.string().min(8),
     fullname: zod.string(),
+});
+
+const login = zod.object({
+    email: zod.string().email(),
+    password: zod.string().min(8),
 });
 
 const createTODO = zod.object({
@@ -14,7 +19,8 @@ const createTODO = zod.object({
 });
 
 module.exports = {
-    signupLogin,
+    signup,
+    login,
     createTODO,
 };
 
