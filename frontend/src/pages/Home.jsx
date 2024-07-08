@@ -31,6 +31,10 @@ function App() {
     if (!Cookies.get('token') && window.location.pathname === '/User') {
       window.location.href = '/';
     }
+
+    if(Cookies.get('token')) {
+      setLoggedIn(true);
+    }
     
   }, []);
 

@@ -25,24 +25,28 @@ const LoginForm = () => {
         // Add any other headers as needed
       };
 
+      console.log("Email: ", email)
+
       const response = await axios.post(`${HOST}${LOGIN_ROUTE}`, {
         email: email,
         password: password,
       }, { headers });
 
+      console.log("Response: ", response)
+
       if(response.status === 200) {
         alert("Logged in Successfully")
         login();
+        Cookies.set('token', response.data.token);
+        Cookies.set('username', response.data.username.split(' ')[0]);
+        navigate('/user')
       } else if (response.status === 401){
         alert("Incorrect Password")
+        console.log("Incorrect Password")
       } else {
         alert("User Not Found")
+        console.log("User Not Found")
       }
-
-
-      Cookies.set('token', response.data.token);
-      Cookies.set('username', response.data.username.split(' ')[0]);
-      navigate('/user')
     } catch (error) {
       console.error('Axios Error submitting form:', error);
     }

@@ -11,7 +11,7 @@ const SIGNUP_ROUTE = import.meta.env.VITE_SIGNUP_ROUTE
 const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [fullname, setFullName] = useState('');
+  const [fullname, setFullname] = useState('');
   const { login } = useContext(LoginContext);
   const navigate = useNavigate();
 
@@ -62,7 +62,7 @@ const SignupForm = () => {
           <input type="password" placeholder="PASS" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
         <div className="input-group-signup">
-          <input type="text" placeholder="FULL NAME" value={fullname} onChange={(e) => setFullName(e.target.value)} required />
+          <input type="text" placeholder="FULL NAME" value={fullname} onChange={(e) => setFullname(e.target.value)} required />
         </div>
         <div className="member-link">
           Already a Member?

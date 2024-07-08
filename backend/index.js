@@ -74,6 +74,12 @@ app.post('/signup', zodVerifier(signup), async function (req, res) {
         const details = {
             email: req.body.email,
             password: hashPass,
+            fullname:req.body.fullname,
+        }
+
+        const tokenDetails = {
+            email: req.body.email,
+            password: hashPass,
         }
 
         const user = new USER(details);
@@ -81,7 +87,7 @@ app.post('/signup', zodVerifier(signup), async function (req, res) {
         await user.save();
         res.status(201).send({
             msg: "User added",
-            token: "Bearer " + jwt.sign(details, jwtSecret)
+            token: "Bearer " + jwt.sign(tokenDetails, jwtSecret)
         });
         console.log("User Added to Database and token sent");
 
@@ -98,10 +104,10 @@ app.post('/signup', zodVerifier(signup), async function (req, res) {
 app.post('/login', zodVerifier(login), async (req, res) => {
     const existingUser = await USER.findOne({ email: req.body.email });
     if (!existingUser) {
+        console.log('User not found:', req.body.email);
         res.status(404).send({
             msg: "User Not Found"
         })
-        return
     }
 
     const hashPass = hasher(req.body.password)
@@ -112,12 +118,14 @@ app.post('/login', zodVerifier(login), async (req, res) => {
     }
 
     if (existingUser.password === hashPass) {
+        console.log('Password matched for user:', req.body.email);
         res.status(200).send({
             msg: "Logged in Successfully",
             token: `Bearer ${jwt.sign(details, jwtSecret)}`,
             username: existingUser.fullname
         })
     } else {
+        console.log('Invalid password for user:', req.body.email);
         res.status(401).send({
             msg: "Invalid Password"
         })

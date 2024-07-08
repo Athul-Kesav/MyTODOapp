@@ -58,7 +58,8 @@ const ListTodo = memo(({ todos }) => {
         "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
       }
       await axios[method](`${HOST}${UPDATE_TODOS_ROUTE}`, {
-        id: todo._id
+        id: todo._id,
+        status:true,
       }, { headers: header });
     } catch (error) {
       console.error("There was an error fetching the todos!", error);
@@ -79,9 +80,9 @@ const ListTodo = memo(({ todos }) => {
       <div>
         {/* Editor View */}
       </div>) : (
-        <div className='container' key={todo._id} onClick={openEditor}>
+        <div className='container'>
           {/* Normal View */}
-          <div className='todoElement'>
+          <div className='todoElement' key={todo._id}>
             <span className="todo-text">{todo.title}</span>
             <span className="todo-desc">{todo.description}</span>
             <div className="todo-icons">

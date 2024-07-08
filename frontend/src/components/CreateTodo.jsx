@@ -13,23 +13,26 @@ const CreateTodo = memo(() => {
   const [deadline, setDeadline] = useState(null)
 
 
+  const [date, setDate] = useState(null)
+  const [time, setTime] = useState(null)
 
   async function sender() {
     if (title === "" || description === "" || deadline === "") {
       alert('Please fill all the fields');
       return;
     }
-    setDeadline(new Date(deadline)); // Convert to human-readable date time format
-
+    setDeadline(`${date}T${time}`); // Convert to human-readable date time format
+    
     const headers = {
       'Content-Type': 'application/json',
       "Authorization": `Bearer ${Cookies.get('token').split(' ')[1]}`,
     }
+    console.log(deadline);
 
     await axios.post(`${HOST}${CREATE_TODOS_ROUTE}`, {
       title: title,
       description: description,
-      deadline: deadline.toString(),
+      deadline: deadline,
       status: false
     }, { headers: headers })
   }
@@ -43,10 +46,18 @@ const CreateTodo = memo(() => {
         setDescription(e.target.value);
       }} /> <br />
       <input
-        type="datetime-local"
+        type="date"
         id="date"
         onChange={function (e) {
-          setDeadline(e.target.value);
+          setDate(e.target.value);
+        }}
+        required
+      /> <br />
+      <input
+        type="time"
+        id="time"
+        onChange={function (e) {
+          setTime(e.target.value);
         }}
         required
       />
